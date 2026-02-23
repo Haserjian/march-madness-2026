@@ -82,7 +82,7 @@ Each day produces:
 
 | What you can verify | How |
 |---------------------|-----|
-| Predictions weren't changed after tipoff | Digital fingerprint (SHA-256) locks content; Ed25519 signature locks time |
+| Predictions weren't changed after tipoff | Digital fingerprint (SHA-256) + Ed25519 signature lock content integrity |
 | Signature can't be forged | Ed25519 is the same standard used for SSH keys and software signing |
 | Site content matches the signed proof | `site_html_hash` + `site_json_hash` are included in the signed payload |
 | Source code is auditable | `source_commit` in the attestation points to the exact code version |
