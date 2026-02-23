@@ -233,7 +233,7 @@
 </tr>
 </table>
   <div class="verify">
-    <code>pip install assay-ai && assay verify-march-day --date 2026-02-24 --public-url https://haserjian.github.io/march-madness-2026</code>
+    <code>curl -s https://haserjian.github.io/march-madness-2026/attestations/2026-02-24.json | python3 -c "import base64,json,sys; att=json.load(sys.stdin); from nacl.signing import VerifyKey; VerifyKey(base64.b64decode(att['signer_pubkey'])).verify(json.dumps({k:v for k,v in att.items() if k not in ('signature','signer_pubkey','signer_pubkey_fingerprint')},sort_keys=True,separators=(',',':')).encode(),base64.b64decode(att['signature'])); print('PASS',att['date'],att['n_games'],'games')"</code>
   </div>
 </div>
 <div class="day-card">
@@ -289,15 +289,24 @@
 </tr>
 </table>
   <div class="verify">
-    <code>pip install assay-ai && assay verify-march-day --date 2026-02-23 --public-url https://haserjian.github.io/march-madness-2026</code>
+    <code>curl -s https://haserjian.github.io/march-madness-2026/attestations/2026-02-23.json | python3 -c "import base64,json,sys; att=json.load(sys.stdin); from nacl.signing import VerifyKey; VerifyKey(base64.b64decode(att['signer_pubkey'])).verify(json.dumps({k:v for k,v in att.items() if k not in ('signature','signer_pubkey','signer_pubkey_fingerprint')},sort_keys=True,separators=(',',':')).encode(),base64.b64decode(att['signature'])); print('PASS',att['date'],att['n_games'],'games')"</code>
   </div>
 </div>
 
 <div class="method" style="margin-top: 2rem; border-color: var(--accent);">
   <strong>Verify today's attestation in 60 seconds:</strong>
-  <pre style="margin-top: 0.5rem; overflow-x: auto; color: var(--text); font-size: 0.82rem;">pip install assay-ai pynacl
-assay verify-march-day --date 2026-02-24 \
-  --public-url https://haserjian.github.io/march-madness-2026</pre>
+  <pre style="margin-top: 0.5rem; overflow-x: auto; color: var(--text); font-size: 0.82rem;">pip install pynacl
+curl -s https://haserjian.github.io/march-madness-2026/attestations/2026-02-24.json | python3 -c "
+import base64, json, sys
+att = json.load(sys.stdin)
+from nacl.signing import VerifyKey
+vk = VerifyKey(base64.b64decode(att['signer_pubkey']))
+unsigned = {k: v for k, v in att.items()
+            if k not in ('signature', 'signer_pubkey', 'signer_pubkey_fingerprint')}
+vk.verify(json.dumps(unsigned, sort_keys=True, separators=(',', ':')).encode(),
+          base64.b64decode(att['signature']))
+print('PASS:', att['date'], att['n_games'], 'games')
+"</pre>
   <p style="margin-top: 0.5rem;">
     <a href="https://github.com/Haserjian/march-madness-2026#verify-in-60-seconds">Full verification guide</a> &middot;
     Key fingerprint: <code style="font-size: 0.75rem;">sha256:81f878...d5e0d3</code>
@@ -306,7 +315,7 @@ assay verify-march-day --date 2026-02-24 \
 
 <div class="footer">
   <p>
-    Built 2026-02-23 20:16 UTC &middot;
+    Built 2026-02-23 20:52 UTC &middot;
     <a href="index.json">index.json</a> &middot;
     <a href="https://github.com/Haserjian/march-madness-2026">Source</a>
   </p>

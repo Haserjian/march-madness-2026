@@ -44,22 +44,29 @@ python scripts/march_madness/run_day.py --date YYYY-MM-DD --settle-only --mirror
 
 Re-runs settlement to pick up final scores, rebuilds proof pack with settlement receipts, and mirrors updated results.
 
-### Verify your own output
+### Verify any day's attestation
 
 ```bash
-# Local verification (full: attestation + manifest + lock + pack)
-assay verify-march-day --date 2026-02-24
+# Install PyNaCl (the only dependency)
+pip install pynacl
 
-# Public verification (attestation + site hashes only)
-assay verify-march-day \
-  --date 2026-02-24 \
-  --public-url https://haserjian.github.io/march-madness-2026
+# Verify a specific day (replace date as needed)
+curl -s https://haserjian.github.io/march-madness-2026/attestations/2026-02-24.json | python3 -c "
+import base64, json, sys
+att = json.load(sys.stdin)
+unsigned = {k: v for k, v in att.items()
+            if k not in ('signature', 'signer_pubkey', 'signer_pubkey_fingerprint')}
+canonical = json.dumps(unsigned, sort_keys=True, separators=(',', ':')).encode()
+from nacl.signing import VerifyKey
+vk = VerifyKey(base64.b64decode(att['signer_pubkey']))
+vk.verify(canonical, base64.b64decode(att['signature']))
+print('PASS:', att['date'], att['n_games'], 'games')
+print('Hash:', att['predictions_hash'])
+print('Fingerprint:', att.get('signer_pubkey_fingerprint', 'n/a'))
+"
 
-# With key pinning
-assay verify-march-day \
-  --date 2026-02-24 \
-  --public-url https://haserjian.github.io/march-madness-2026 \
-  --allow-fingerprint sha256:81f878680fdfbc8986c66ca8df84519b7d26e368e72ec5db2480160278d5e0d3
+# Pin the signer key fingerprint (should always be):
+# sha256:81f878680fdfbc8986c66ca8df84519b7d26e368e72ec5db2480160278d5e0d3
 ```
 
 ## Cron setup
@@ -85,7 +92,7 @@ crontab -e
 | `build_site.py` | Generate static HTML + JSON for GitHub Pages |
 | `attest_day.py` | Sign daily attestation (Ed25519) |
 | `mirror_site.py` | Copy site artifacts to public repo and push |
-| `verify_day.py` | Standalone verification (also available as `assay verify-march-day`) |
+| `verify_day.py` | Standalone verification (Ed25519 signature + hash checks) |
 
 ## API credit budget
 
