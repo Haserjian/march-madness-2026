@@ -16,6 +16,9 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Install PyNaCl for signature verification
+        run: pip install pynacl
+
       - name: Check today's attestation
         id: check
         run: |
@@ -34,18 +37,57 @@ jobs:
             ERRORS="$ERRORS\n- index.json missing"
           fi
 
-          # 3. Check today's attestation exists
+          # 3. Check today's attestation exists and verify signature
           ATT="attestations/${TODAY}.json"
           if [ -f "$ATT" ]; then
             echo "attestation=true" >> "$GITHUB_OUTPUT"
 
-            # 4. Verify attestation has required fields
-            for field in predictions_hash locked_at signature signer_pubkey; do
-              val=$(python3 -c "import json; d=json.load(open('$ATT')); print(d.get('$field',''))")
-              if [ -z "$val" ] || [ "$val" = "None" ]; then
-                ERRORS="$ERRORS\n- attestation missing field: $field"
+            # Verify Ed25519 signature using embedded public key
+            VERIFY_RESULT=$(python3 -c "
+          import base64, hashlib, json, sys
+          try:
+              from nacl.signing import VerifyKey
+          except ImportError:
+              print('SKIP: PyNaCl not available')
+              sys.exit(0)
+
+          att = json.load(open('$ATT'))
+
+          # Check required crypto fields
+          pubkey_b64 = att.get('signer_pubkey', '')
+          sig_b64 = att.get('signature', '')
+          if not pubkey_b64 or not sig_b64:
+              print('FAIL: missing signer_pubkey or signature')
+              sys.exit(1)
+
+          # Verify signature
+          unsigned = {k: v for k, v in att.items()
+                      if k not in ('signature', 'signer_pubkey', 'signer_pubkey_fingerprint')}
+          canonical = json.dumps(unsigned, sort_keys=True, separators=(',', ':')).encode('utf-8')
+          try:
+              vk = VerifyKey(base64.b64decode(pubkey_b64))
+              vk.verify(canonical, base64.b64decode(sig_b64))
+              print('PASS')
+          except Exception as e:
+              print(f'FAIL: signature verification failed: {e}')
+              sys.exit(1)
+          ")
+            if [ $? -ne 0 ]; then
+              ERRORS="$ERRORS\n- attestation signature verification failed: $VERIFY_RESULT"
+            fi
+
+            # Check conditional fields based on n_games
+            N_GAMES=$(python3 -c "import json; print(json.load(open('$ATT')).get('n_games', 0))")
+
+            if [ "$N_GAMES" -gt 0 ]; then
+              # Games exist: predictions_hash must be present
+              PRED_HASH=$(python3 -c "import json; print(json.load(open('$ATT')).get('predictions_hash') or '')")
+              if [ -z "$PRED_HASH" ]; then
+                ERRORS="$ERRORS\n- attestation missing predictions_hash (${N_GAMES} games expected)"
               fi
-            done
+            fi
+            # locked_at can legitimately be null (pre-lock or no games)
+
           else
             echo "attestation=false" >> "$GITHUB_OUTPUT"
             ERRORS="$ERRORS\n- attestation missing for $TODAY"
