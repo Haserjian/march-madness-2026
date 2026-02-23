@@ -1,20 +1,22 @@
 # March Madness 2026 -- Locked Predictions
 
-Daily predictions for every NCAA tournament game, digitally signed and locked before tipoff. Anyone can verify that no prediction was changed after the game started.
+Daily predictions for every NCAA tournament game, digitally signed and publicly published before tipoff. Anyone can verify that no prediction was changed after publishing.
 
 **Not blockchain. Not cryptocurrency.** This uses digital signatures (Ed25519) -- the same technology that secures SSH connections and software updates. Standard, well-tested, boring math.
 
 ## Why this exists
 
-Anyone can claim they predicted a game correctly -- after it's over. That's cheap. This project makes predictions **provably pre-game**: each day's picks are digitally signed before tipoff, and the signature breaks if even one prediction is changed afterward.
+Anyone can claim they predicted a game correctly -- after it's over. That's cheap. This project makes predictions **verifiably pre-game**: each day's picks are digitally signed and publicly published before tipoff, and the signature breaks if even one prediction is changed afterward.
 
-Think of it like a notarized timestamp for your picks -- except the notary is math, not a person.
+Think of it like a notarized timestamp for your picks -- except the notary is math, not a person. The result: no hindsight editing, and a public track record anyone can audit.
 
 ## How predictions are made
 
 No AI model. The predictions come from **what the sportsbooks collectively think will happen**: consensus odds from every major US bookmaker, averaged together after removing the house's profit margin (called the "vig"). The market's wisdom is the prediction.
 
 **Live scoreboard:** [haserjian.github.io/march-madness-2026](https://haserjian.github.io/march-madness-2026)
+
+Currently running on regular-season games as a pre-tournament dry run. Tournament predictions begin with bracket week.
 
 ## Verify any day (requires Python)
 
@@ -85,6 +87,18 @@ Each day produces:
 | Site content matches the signed proof | `site_html_hash` + `site_json_hash` are included in the signed payload |
 | Source code is auditable | `source_commit` in the attestation points to the exact code version |
 
+## What this proves (and doesn't)
+
+**The digital signature proves:**
+- Predictions were signed before being publicly published
+- No prediction was modified after signing (the signature would break)
+- The signing key is consistent across all days (verifiable via fingerprint pinning)
+
+**The signature does NOT prove:**
+- Exact wall-clock timing -- the signature proves integrity, not timestamps. Timing is evidenced by the public Git commit history and the append-only lock log
+- That predictions are accurate, profitable, or worth betting on -- this is not betting advice
+- Anything about prediction method quality -- v1 intentionally uses a simple market-consensus baseline
+
 ## Glossary
 
 | Term | Plain English |
@@ -92,7 +106,7 @@ Each day produces:
 | **Ed25519** | A digital signature algorithm. Like a wax seal that breaks if the letter is opened. Same tech behind SSH keys. Not related to cryptocurrency. |
 | **SHA-256 hash** | A digital fingerprint. A short string computed from the full predictions file. If even one character changes, the fingerprint is completely different. |
 | **Vig (vigorish)** | The sportsbook's profit margin baked into their odds. We strip it out to get the market's true probability estimate. |
-| **Brier score** | Measures prediction accuracy: 0.0 = perfect, 0.25 = coin flip, 1.0 = always wrong. Lower is better. |
+| **Brier score** | Measures prediction accuracy: 0.0 = perfect, ~0.25 is coin-flip territory for balanced binary outcomes, 1.0 = always wrong. Lower is better. |
 | **Attestation** | A signed JSON file containing the predictions fingerprint, signature, and public key -- everything needed to verify independently. |
 | **Moneyline** | How sportsbooks express odds. +150 means a $100 bet wins $150; -150 means you bet $150 to win $100. |
 

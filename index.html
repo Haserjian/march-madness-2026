@@ -168,7 +168,7 @@
   </div>
   <div class="stat">
     <div class="stat-value">-</div>
-    <div class="stat-label" title="Brier score measures prediction accuracy: 0.0 = perfect, 0.25 = coin flip. Lower is better.">Avg Brier &#9432;</div>
+    <div class="stat-label" title="Brier score measures prediction accuracy: 0.0 = perfect, ~0.25 is coin-flip territory. Lower is better.">Avg Brier &#9432;</div>
   </div>
 </div>
 
@@ -177,8 +177,8 @@
   Consensus odds from every major US sportsbook, averaged after removing the house&rsquo;s profit margin.
   No AI model &mdash; the market IS the prediction.
   Every day&rsquo;s picks are digitally signed before tipoff. If any prediction is changed afterward, the signature breaks.
-  <br><br>
-  <em style="font-size: 0.8rem;">Not blockchain. Not cryptocurrency. This uses standard digital signatures (Ed25519) &mdash; the same technology behind SSH and software updates.</em>
+
+  <br><em style="font-size: 0.8rem;">Digital signatures (Ed25519) &mdash; the same technology behind SSH and software updates. This is not betting advice.</em>
 </div>
 
 <div class="day-card">
@@ -310,14 +310,20 @@ vk.verify(json.dumps(unsigned, sort_keys=True, separators=(',', ':')).encode(),
 print('PASS:', att['date'], att['n_games'], 'games')
 "</pre>
   <p style="margin-top: 0.5rem;">
-    <a href="https://github.com/Haserjian/march-madness-2026#verify-in-60-seconds">Full verification guide</a> &middot;
+    <a href="https://github.com/Haserjian/march-madness-2026#verify-any-day-requires-python">Full verification guide</a> &middot;
     Key fingerprint: <code style="font-size: 0.75rem;">sha256:81f878...d5e0d3</code>
   </p>
 </div>
 
+<div class="method" style="margin-top: 1rem; font-size: 0.82rem;">
+  <strong>What this proves:</strong> Predictions were signed before being published and haven&rsquo;t been modified since. Timing is evidenced by the public Git commit history.
+  <br>
+  <strong>What this does not prove:</strong> Exact wall-clock timestamps, prediction quality, or that this is betting advice. It is not.
+</div>
+
 <div class="footer">
   <p>
-    Built 2026-02-23 21:07 UTC &middot;
+    Built 2026-02-23 21:18 UTC &middot;
     <a href="index.json">index.json</a> &middot;
     <a href="https://github.com/Haserjian/march-madness-2026">Source</a>
   </p>
