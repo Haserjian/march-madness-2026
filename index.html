@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>March Madness 2026 - Receipted Predictions</title>
+<style>
+  :root {
+    --bg: #0d1117;
+    --card: #161b22;
+    --border: #30363d;
+    --text: #e6edf3;
+    --muted: #8b949e;
+    --accent: #58a6ff;
+    --green: #3fb950;
+    --red: #f85149;
+    --yellow: #d29922;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.5;
+    padding: 2rem 1rem;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  h1 { font-size: 1.5rem; margin-bottom: 0.25rem; }
+  .subtitle { color: var(--muted); margin-bottom: 1.5rem; font-size: 0.9rem; }
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+  .stat {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 1rem;
+    text-align: center;
+  }
+  .stat-value { font-size: 1.5rem; font-weight: 600; }
+  .stat-label { color: var(--muted); font-size: 0.8rem; text-transform: uppercase; }
+  .day-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 1.25rem;
+    margin-bottom: 1rem;
+  }
+  .day-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.75rem;
+  }
+  .day-header h3 { font-size: 1.1rem; }
+  .games-count {
+    background: var(--border);
+    padding: 0.15rem 0.5rem;
+    border-radius: 10px;
+    font-size: 0.8rem;
+    color: var(--muted);
+  }
+  .day-meta { margin-bottom: 0.75rem; }
+  .meta-row {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    font-size: 0.85rem;
+    margin-bottom: 0.25rem;
+  }
+  .label { color: var(--muted); min-width: 4rem; }
+  .brier { color: var(--muted); margin-left: 0.5rem; }
+  code {
+    background: rgba(110,118,129,0.15);
+    padding: 0.15rem 0.35rem;
+    border-radius: 3px;
+    font-size: 0.82rem;
+    word-break: break-all;
+  }
+  .verify {
+    margin-top: 0.75rem;
+    padding-top: 0.75rem;
+    border-top: 1px solid var(--border);
+  }
+  .verify code {
+    display: block;
+    padding: 0.5rem 0.75rem;
+    font-size: 0.78rem;
+    color: var(--muted);
+  }
+  table.games {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.8rem;
+    margin-top: 0.75rem;
+  }
+  table.games th {
+    text-align: left;
+    color: var(--muted);
+    font-weight: 500;
+    padding: 0.35rem 0.5rem;
+    border-bottom: 1px solid var(--border);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+  }
+  table.games td {
+    padding: 0.35rem 0.5rem;
+    border-bottom: 1px solid rgba(48,54,61,0.5);
+  }
+  .correct { color: var(--green); font-weight: 600; }
+  .miss { color: var(--red); font-weight: 600; }
+  .pending { color: var(--yellow); }
+  .footer {
+    margin-top: 2rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border);
+    color: var(--muted);
+    font-size: 0.8rem;
+    text-align: center;
+  }
+  .footer a { color: var(--accent); text-decoration: none; }
+  .footer a:hover { text-decoration: underline; }
+  .method {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 1rem;
+    margin-bottom: 2rem;
+    font-size: 0.85rem;
+    color: var(--muted);
+  }
+  .method strong { color: var(--text); }
+  @media (max-width: 600px) {
+    body { padding: 1rem 0.5rem; }
+    .stats { grid-template-columns: repeat(2, 1fr); }
+    table.games { font-size: 0.7rem; }
+    table.games td, table.games th { padding: 0.25rem 0.3rem; }
+  }
+</style>
+</head>
+<body>
+
+<h1>March Madness 2026</h1>
+<p class="subtitle">
+  Receipted predictions &middot; Ed25519-signed proof packs &middot;
+  verifiable with <a href="https://pypi.org/project/assay-ai/">assay-ai</a>
+</p>
+
+<div class="stats">
+  <div class="stat">
+    <div class="stat-value">1</div>
+    <div class="stat-label">Days</div>
+  </div>
+  <div class="stat">
+    <div class="stat-value">9</div>
+    <div class="stat-label">Predictions</div>
+  </div>
+  <div class="stat">
+    <div class="stat-value">0</div>
+    <div class="stat-label">Settled</div>
+  </div>
+  <div class="stat">
+    <div class="stat-value">-</div>
+    <div class="stat-label">Accuracy</div>
+  </div>
+  <div class="stat">
+    <div class="stat-value">-</div>
+    <div class="stat-label">Avg Brier</div>
+  </div>
+</div>
+
+<div class="method">
+  <strong>Method:</strong> Market-implied probability.
+  Consensus of all available US bookmaker moneyline odds, normalized to remove vig.
+  No ML model -- the market IS the prediction.
+  Each daily manifest is SHA-256 hashed and Ed25519-signed before tipoff.
+</div>
+
+<div class="day-card">
+  <div class="day-header">
+    <h3>2026-02-23</h3>
+    <span class="games-count">9 games</span>
+  </div>
+  <div class="day-meta">
+    <div class="meta-row">
+      <span class="label">Hash:</span>
+      <code>sha256:a800be7c</code>
+    </div>
+    <div class="meta-row">
+      <span class="label">Locked:</span>
+      <span>not locked</span>
+    </div>
+    <div class="meta-row">
+      <span class="label">Result:</span>
+      <span>awaiting results</span>
+      
+    </div>
+  </div>
+  <table class="games">
+<tr>
+<th>Away</th><th>Home</th><th>Pick</th><th>Prob</th><th>Spread</th><th>Score</th><th>Result</th><th>Brier</th>
+</tr>
+<tr>
+<td>Nicholls St Colonels</td><td>Lamar Cardinals</td><td><strong>Cardinals</strong></td><td>63.5%</td><td>-4.5</td><td>-</td><td><span class="pending">PENDING</span></td><td>-</td>
+</tr>
+<tr>
+<td>Louisville Cardinals</td><td>North Carolina Tar Heels</td><td><strong>Cardinals</strong></td><td>56.2%</td><td>+2.5</td><td>-</td><td><span class="pending">PENDING</span></td><td>-</td>
+</tr>
+<tr>
+<td>Texas A&M-CC Islanders</td><td>SE Louisiana Lions</td><td><strong>Islanders</strong></td><td>57.7%</td><td>+2.5</td><td>-</td><td><span class="pending">PENDING</span></td><td>-</td>
+</tr>
+<tr>
+<td>Houston Christian Huskies</td><td>East Texas A&M Lions</td><td><strong>Lions</strong></td><td>58.6%</td><td>-2.5</td><td>-</td><td><span class="pending">PENDING</span></td><td>-</td>
+</tr>
+<tr>
+<td>Incarnate Word Cardinals</td><td>Northwestern St Demons</td><td><strong>Demons</strong></td><td>56.5%</td><td>-2.5</td><td>-</td><td><span class="pending">PENDING</span></td><td>-</td>
+</tr>
+<tr>
+<td>UT Rio Grande Valley Vaqueros</td><td>McNeese Cowboys</td><td><strong>Cowboys</strong></td><td>84.1%</td><td>-11.2</td><td>-</td><td><span class="pending">PENDING</span></td><td>-</td>
+</tr>
+<tr>
+<td>New Orleans Privateers</td><td>Stephen F. Austin Lumberjacks</td><td><strong>Lumberjacks</strong></td><td>87.4%</td><td>-13.0</td><td>-</td><td><span class="pending">PENDING</span></td><td>-</td>
+</tr>
+<tr>
+<td>Miss Valley St Delta Devils</td><td>Grambling St Tigers</td><td><strong>Tigers</strong></td><td>92.4%</td><td>-16.5</td><td>-</td><td><span class="pending">PENDING</span></td><td>-</td>
+</tr>
+<tr>
+<td>Houston Cougars</td><td>Kansas Jayhawks</td><td><strong>Cougars</strong></td><td>55.4%</td><td>+1.8</td><td>-</td><td><span class="pending">PENDING</span></td><td>-</td>
+</tr>
+</table>
+  <div class="verify">
+    <code># pack not yet built</code>
+  </div>
+</div>
+
+<div class="footer">
+  <p>
+    Built 2026-02-23 04:12 UTC &middot;
+    <a href="index.json">index.json</a> &middot;
+    <a href="https://github.com/Haserjian/ccio">Source</a>
+  </p>
+  <p style="margin-top: 0.5rem;">
+    Verify any pack: <code>pip install assay-ai && assay verify-pack &lt;pack_dir&gt;</code>
+  </p>
+</div>
+
+</body>
+</html>
