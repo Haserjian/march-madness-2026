@@ -1,20 +1,30 @@
-# March Madness 2026 -- Receipted Predictions
+# March Madness 2026 -- Locked Predictions
 
-Pre-tipoff predictions for every NCAA tournament game, cryptographically signed and publicly verifiable.
+Daily predictions for every NCAA tournament game, digitally signed and locked before tipoff. Anyone can verify that no prediction was changed after the game started.
 
-No ML model. The market IS the prediction: consensus implied probability from US bookmaker moneyline odds, normalized to remove vig.
+**Not blockchain. Not cryptocurrency.** This uses digital signatures (Ed25519) -- the same technology that secures SSH connections and software updates. Standard, well-tested, boring math.
 
-**Live site:** [haserjian.github.io/march-madness-2026](https://haserjian.github.io/march-madness-2026)
+## Why this exists
 
-## Verify in 60 seconds
+Anyone can claim they predicted a game correctly -- after it's over. That's cheap. This project makes predictions **provably pre-game**: each day's picks are digitally signed before tipoff, and the signature breaks if even one prediction is changed afterward.
 
-Every daily prediction is Ed25519-signed before tipoff. You can verify any day's attestation with zero trust in us:
+Think of it like a notarized timestamp for your picks -- except the notary is math, not a person.
+
+## How predictions are made
+
+No AI model. The predictions come from **what the sportsbooks collectively think will happen**: consensus odds from every major US bookmaker, averaged together after removing the house's profit margin (called the "vig"). The market's wisdom is the prediction.
+
+**Live scoreboard:** [haserjian.github.io/march-madness-2026](https://haserjian.github.io/march-madness-2026)
+
+## Verify any day (requires Python)
+
+Every daily prediction is digitally signed before tipoff. You can check any day's signature yourself -- no trust required:
 
 ```bash
-# 1. Install PyNaCl (the only dependency)
+# Install the signature library (only dependency)
 pip install pynacl
 
-# 2. Fetch and verify
+# Fetch and verify (replace date as needed)
 curl -s https://haserjian.github.io/march-madness-2026/attestations/2026-02-24.json | python3 -c "
 import base64, json, sys
 att = json.load(sys.stdin)
@@ -32,61 +42,64 @@ print(f'  Signer fingerprint: {att.get(\"signer_pubkey_fingerprint\", \"n/a\")}'
 "
 ```
 
-Replace `2026-02-24` with any date to verify that day's predictions.
+Replace `2026-02-24` with any date. If the signature doesn't match, the predictions were tampered with. (This won't happen -- breaking Ed25519 would also break most of the internet.)
 
-**Pin the signer key** to detect key substitution -- the fingerprint should always be:
+**Pin the signer key** to make sure the signing key hasn't been secretly swapped. The fingerprint should always be:
 ```
 sha256:81f878680fdfbc8986c66ca8df84519b7d26e368e72ec5db2480160278d5e0d3
 ```
 
-## How it works
+## How it works under the hood
 
 ```
 Bookmaker odds (TheOddsAPI)
     |
     v
-Consensus probability (vig-removed average across all US books)
+Consensus probability (averaged across all US books, vig removed)
     |
     v
-SHA-256 hash of predictions manifest
+Digital fingerprint of predictions (SHA-256 -- changes if anything is modified)
     |
     v
-Pre-tipoff lock (append-only, timestamped)
+Pre-tipoff lock (timestamped, append-only log)
     |
     v
-Ed25519-signed proof pack (assay-ai)
-    |
-    v
-Signed daily attestation (predictions_hash + site hashes + source commit)
+Digital signature (Ed25519 -- proves predictions existed at lock time)
     |
     v
 Public GitHub Pages (this repo)
 ```
 
 Each day produces:
-- **Prediction manifest** -- every game's pick, probability, spread, bookmaker lines
-- **Lock entry** -- SHA-256 hash frozen before tipoff
-- **Proof pack** -- signed receipt bundle (verifiable with `assay verify-pack`)
-- **Attestation** -- single signed JSON binding all hashes together
+- **Predictions file** -- every game's pick, win probability, spread, and raw bookmaker lines
+- **Lock entry** -- digital fingerprint frozen before tipoff
+- **Signed proof** -- bundled receipt verifiable with [assay-ai](https://pypi.org/project/assay-ai/)
+- **Daily attestation** -- single signed JSON tying all fingerprints together
 
 ## Trust model
 
-| Property | Mechanism |
-|----------|-----------|
-| Predictions can't be changed after tipoff | SHA-256 lock + Ed25519 attestation timestamp |
-| Attestation can't be forged | Ed25519 signature, key pinnable by fingerprint |
-| Site content matches attestation | `site_html_hash` + `site_json_hash` in signed payload |
-| Source code is auditable | `source_commit` SHA in attestation points to exact code |
+| What you can verify | How |
+|---------------------|-----|
+| Predictions weren't changed after tipoff | Digital fingerprint (SHA-256) locks content; Ed25519 signature locks time |
+| Signature can't be forged | Ed25519 is the same standard used for SSH keys and software signing |
+| Site content matches the signed proof | `site_html_hash` + `site_json_hash` are included in the signed payload |
+| Source code is auditable | `source_commit` in the attestation points to the exact code version |
 
-**Signer key fingerprint (pin this):**
-```
-sha256:81f878680fdfbc8986c66ca8df84519b7d26e368e72ec5db2480160278d5e0d3
-```
+## Glossary
+
+| Term | Plain English |
+|------|---------------|
+| **Ed25519** | A digital signature algorithm. Like a wax seal that breaks if the letter is opened. Same tech behind SSH keys. Not related to cryptocurrency. |
+| **SHA-256 hash** | A digital fingerprint. A short string computed from the full predictions file. If even one character changes, the fingerprint is completely different. |
+| **Vig (vigorish)** | The sportsbook's profit margin baked into their odds. We strip it out to get the market's true probability estimate. |
+| **Brier score** | Measures prediction accuracy: 0.0 = perfect, 0.25 = coin flip, 1.0 = always wrong. Lower is better. |
+| **Attestation** | A signed JSON file containing the predictions fingerprint, signature, and public key -- everything needed to verify independently. |
+| **Moneyline** | How sportsbooks express odds. +150 means a $100 bet wins $150; -150 means you bet $150 to win $100. |
 
 ## Data files
 
 - [`index.json`](https://haserjian.github.io/march-madness-2026/index.json) -- machine-readable scoreboard
-- [`attestations/YYYY-MM-DD.json`](https://haserjian.github.io/march-madness-2026/attestations/2026-02-24.json) -- signed daily attestation
+- [`attestations/YYYY-MM-DD.json`](https://haserjian.github.io/march-madness-2026/attestations/2026-02-24.json) -- daily signed proof
 
 ## Run your own
 

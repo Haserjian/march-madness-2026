@@ -1,6 +1,6 @@
 # Operator Runbook
 
-Daily pipeline for March Madness receipted predictions. Runs from the `ccio` repo (private), mirrors results here (public).
+Daily pipeline for March Madness locked predictions. Runs from the `ccio` repo (private), mirrors results here (public).
 
 ## Prerequisites
 

@@ -1,15 +1,15 @@
 {
   "schema": "march_madness_attestation_v1",
   "date": "2026-02-24",
-  "attested_at": "2026-02-23T20:52:45.441527+00:00",
+  "attested_at": "2026-02-23T21:07:57.190507+00:00",
   "n_games": 9,
   "predictions_hash": "sha256:29a94c55c3e6435414ebdc745b63e26c51f7f9a3b5956a70d4d020ec9a5d5e39",
   "locked_at": "2026-02-23T20:10:03.024998+00:00",
-  "site_html_hash": "sha256:b5a03b5818bab90617a7c9be24ee73810ecec497eeee1739ea2108910072cbaf",
+  "site_html_hash": "sha256:1937ea1ca830097c3a336549d6d9bad2f8e71d72ed3bfc4db2c0fb7b4ea2979c",
   "site_json_hash": "sha256:da788029ba3639e8d3260243666a00aba17b1bf15faa71fc22b373cfcad39e26",
-  "source_commit": "6d476ca3a7c0774264a12d5503c9731d47dff314",
+  "source_commit": "7b7e9c981c4d9b4b26338692dae46fa92b4f47fa",
   "signer_id": "march-madness-2026",
-  "signature": "hRTivAGwdjXZ8EDNA4t5HTvDtTFhcQV3Qaog8DKMedC074u0hk4QTneUrKHLsgyPcAOtr156Vgoc7rbiraZZAA==",
+  "signature": "pazozEaj5N+h1X0ILc2z24j7LZuqTPAgMDHTPpV+pvu11+mY2b6uh5AmgIRmqouA3mkepJXHe59WOZ2i/pMYAw==",
   "signer_pubkey": "uh17vJodTtE+xO2JE2wKB7STy1T11pT06Z155Lyc+MU=",
   "signer_pubkey_fingerprint": "sha256:81f878680fdfbc8986c66ca8df84519b7d26e368e72ec5db2480160278d5e0d3"
 }

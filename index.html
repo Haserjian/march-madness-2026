@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>March Madness 2026 - Receipted Predictions</title>
+<title>March Madness 2026 - Locked Predictions</title>
 <style>
   :root {
     --bg: #0d1117;
@@ -146,8 +146,7 @@
 
 <h1>March Madness 2026</h1>
 <p class="subtitle">
-  Receipted predictions &middot; Ed25519-signed proof packs &middot;
-  verifiable with <a href="https://pypi.org/project/assay-ai/">assay-ai</a>
+  Predictions locked before tipoff &middot; digitally signed &middot; publicly verifiable
 </p>
 
 <div class="stats">
@@ -169,15 +168,17 @@
   </div>
   <div class="stat">
     <div class="stat-value">-</div>
-    <div class="stat-label">Avg Brier</div>
+    <div class="stat-label" title="Brier score measures prediction accuracy: 0.0 = perfect, 0.25 = coin flip. Lower is better.">Avg Brier &#9432;</div>
   </div>
 </div>
 
 <div class="method">
-  <strong>Method:</strong> Market-implied probability.
-  Consensus of all available US bookmaker moneyline odds, normalized to remove vig.
-  No ML model -- the market IS the prediction.
-  Each daily manifest is SHA-256 hashed and Ed25519-signed before tipoff.
+  <strong>How predictions are made:</strong>
+  Consensus odds from every major US sportsbook, averaged after removing the house&rsquo;s profit margin.
+  No AI model &mdash; the market IS the prediction.
+  Every day&rsquo;s picks are digitally signed before tipoff. If any prediction is changed afterward, the signature breaks.
+  <br><br>
+  <em style="font-size: 0.8rem;">Not blockchain. Not cryptocurrency. This uses standard digital signatures (Ed25519) &mdash; the same technology behind SSH and software updates.</em>
 </div>
 
 <div class="day-card">
@@ -294,7 +295,8 @@
 </div>
 
 <div class="method" style="margin-top: 2rem; border-color: var(--accent);">
-  <strong>Verify today's attestation in 60 seconds:</strong>
+  <strong>Verify any day's predictions yourself (requires Python):</strong>
+  <p style="margin-top: 0.25rem; margin-bottom: 0.5rem; font-size: 0.82rem;">Checks that the digital signature is valid &mdash; proving the predictions existed before tipoff and haven&rsquo;t been changed.</p>
   <pre style="margin-top: 0.5rem; overflow-x: auto; color: var(--text); font-size: 0.82rem;">pip install pynacl
 curl -s https://haserjian.github.io/march-madness-2026/attestations/2026-02-24.json | python3 -c "
 import base64, json, sys
@@ -315,7 +317,7 @@ print('PASS:', att['date'], att['n_games'], 'games')
 
 <div class="footer">
   <p>
-    Built 2026-02-23 20:52 UTC &middot;
+    Built 2026-02-23 21:07 UTC &middot;
     <a href="index.json">index.json</a> &middot;
     <a href="https://github.com/Haserjian/march-madness-2026">Source</a>
   </p>
