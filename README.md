@@ -11,42 +11,32 @@ No ML model. The market IS the prediction: consensus implied probability from US
 Every daily prediction is Ed25519-signed before tipoff. You can verify any day's attestation with zero trust in us:
 
 ```bash
-# 1. Install the verifier
-pip install assay-ai pynacl
+# 1. Install PyNaCl (the only dependency)
+pip install pynacl
 
-# 2. Verify today's predictions against the public site
-assay verify-march-day \
-  --date 2026-02-24 \
-  --public-url https://haserjian.github.io/march-madness-2026
-
-# 3. Pin the signer key to detect substitution
-assay verify-march-day \
-  --date 2026-02-24 \
-  --public-url https://haserjian.github.io/march-madness-2026 \
-  --allow-fingerprint sha256:81f878680fdfbc8986c66ca8df84519b7d26e368e72ec5db2480160278d5e0d3
-```
-
-Or verify manually with curl + Python (no install needed):
-
-```bash
+# 2. Fetch and verify
 curl -s https://haserjian.github.io/march-madness-2026/attestations/2026-02-24.json | python3 -c "
 import base64, json, sys
 att = json.load(sys.stdin)
 unsigned = {k: v for k, v in att.items()
             if k not in ('signature', 'signer_pubkey', 'signer_pubkey_fingerprint')}
 canonical = json.dumps(unsigned, sort_keys=True, separators=(',', ':')).encode()
-try:
-    from nacl.signing import VerifyKey
-    vk = VerifyKey(base64.b64decode(att['signer_pubkey']))
-    vk.verify(canonical, base64.b64decode(att['signature']))
-    print('PASS: signature valid')
-    print(f'  Date: {att[\"date\"]}')
-    print(f'  Games: {att[\"n_games\"]}')
-    print(f'  Predictions hash: {att[\"predictions_hash\"]}')
-    print(f'  Signer fingerprint: {att.get(\"signer_pubkey_fingerprint\", \"n/a\")}')
-except Exception as e:
-    print(f'FAIL: {e}')
+from nacl.signing import VerifyKey
+vk = VerifyKey(base64.b64decode(att['signer_pubkey']))
+vk.verify(canonical, base64.b64decode(att['signature']))
+print('PASS: signature valid')
+print(f'  Date: {att[\"date\"]}')
+print(f'  Games: {att[\"n_games\"]}')
+print(f'  Predictions hash: {att[\"predictions_hash\"]}')
+print(f'  Signer fingerprint: {att.get(\"signer_pubkey_fingerprint\", \"n/a\")}')
 "
+```
+
+Replace `2026-02-24` with any date to verify that day's predictions.
+
+**Pin the signer key** to detect key substitution -- the fingerprint should always be:
+```
+sha256:81f878680fdfbc8986c66ca8df84519b7d26e368e72ec5db2480160278d5e0d3
 ```
 
 ## How it works
