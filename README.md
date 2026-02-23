@@ -10,6 +10,8 @@ Anyone can claim they predicted a game correctly -- after it's over. That's chea
 
 Think of it like a notarized timestamp for your picks -- except the notary is math, not a person. The result: no hindsight editing, and a public track record anyone can audit.
 
+This is a public demo of [assay-ai](https://pypi.org/project/assay-ai/), an open-source evidence compiler for AI systems -- applied here to a domain where everyone can check the results.
+
 ## How predictions are made
 
 No AI model. The predictions come from **what the sportsbooks collectively think will happen**: consensus odds from every major US bookmaker, averaged together after removing the house's profit margin (called the "vig"). The market's wisdom is the prediction.
@@ -121,6 +123,4 @@ See the [operator runbook](RUNBOOK.md) for how to reproduce the daily pipeline.
 
 ## Built with
 
-- [assay-ai](https://pypi.org/project/assay-ai/) -- evidence compiler for AI systems
-- [TheOddsAPI](https://the-odds-api.com/) -- bookmaker odds aggregator
-- Ed25519 signatures via [PyNaCl](https://pynacl.readthedocs.io/)
+[assay-ai](https://pypi.org/project/assay-ai/) (evidence compiler) | [TheOddsAPI](https://the-odds-api.com/) (odds aggregator) | [PyNaCl](https://pynacl.readthedocs.io/) (Ed25519 signatures)

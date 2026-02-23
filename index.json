@@ -4,11 +4,17 @@
   "signer_id": "march-madness-2026",
   "days": [
     {
+      "date": "2026-02-23",
+      "updated_at": "2026-02-23T22:15:23.008401+00:00",
+      "predictions_pack": "packs/2026-02-23-predictions",
+      "predictions_receipt_count": 10
+    },
+    {
       "date": "2026-02-24",
       "updated_at": "2026-02-23T20:10:03.678935+00:00",
       "predictions_pack": "packs/2026-02-24-predictions",
       "predictions_receipt_count": 10
     }
   ],
-  "updated_at": "2026-02-23T20:10:03.678990+00:00"
+  "updated_at": "2026-02-23T22:15:23.008487+00:00"
 }
