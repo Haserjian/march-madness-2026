@@ -151,11 +151,11 @@
 
 <div class="stats">
   <div class="stat">
-    <div class="stat-value">2</div>
+    <div class="stat-value">1</div>
     <div class="stat-label">Days</div>
   </div>
   <div class="stat">
-    <div class="stat-value">18</div>
+    <div class="stat-value">9</div>
     <div class="stat-label">Predictions</div>
   </div>
   <div class="stat">
@@ -243,62 +243,6 @@
     <code>curl -s https://haserjian.github.io/march-madness-2026/attestations/2026-02-24.json | python3 -c "import base64,json,sys; att=json.load(sys.stdin); from nacl.signing import VerifyKey; VerifyKey(base64.b64decode(att['signer_pubkey'])).verify(json.dumps({k:v for k,v in att.items() if k not in ('signature','signer_pubkey','signer_pubkey_fingerprint')},sort_keys=True,separators=(',',':')).encode(),base64.b64decode(att['signature'])); print('PASS',att['date'],att['n_games'],'games')"</code>
   </div>
 </div>
-<div class="day-card">
-  <div class="day-header">
-    <h3>2026-02-23</h3>
-    <span class="games-count">9 games</span>
-  </div>
-  <div class="day-meta">
-    <div class="meta-row">
-      <span class="label">Hash:</span>
-      <code>sha256:a800be7c</code>
-    </div>
-    <div class="meta-row">
-      <span class="label">Locked:</span>
-      <span>2026-02-23 22:15:22 UTC</span>
-    </div>
-    <div class="meta-row">
-      <span class="label">Result:</span>
-      <span>awaiting results</span>
-      
-    </div>
-  </div>
-  <table class="games">
-<tr>
-<th>Away</th><th>Home</th><th>Pick</th><th>Prob</th><th>Spread</th><th>Score</th><th>Result</th><th>Brier</th>
-</tr>
-<tr>
-<td>Nicholls St Colonels</td><td>Lamar Cardinals</td><td><strong>Cardinals</strong></td><td>63.5%</td><td>-4.5</td><td>-</td><td><span class="pending">PENDING</span></td><td>-</td>
-</tr>
-<tr>
-<td>Louisville Cardinals</td><td>North Carolina Tar Heels</td><td><strong>Cardinals</strong></td><td>56.2%</td><td>+2.5</td><td>-</td><td><span class="pending">PENDING</span></td><td>-</td>
-</tr>
-<tr>
-<td>Texas A&M-CC Islanders</td><td>SE Louisiana Lions</td><td><strong>Islanders</strong></td><td>57.7%</td><td>+2.5</td><td>-</td><td><span class="pending">PENDING</span></td><td>-</td>
-</tr>
-<tr>
-<td>Houston Christian Huskies</td><td>East Texas A&M Lions</td><td><strong>Lions</strong></td><td>58.6%</td><td>-2.5</td><td>-</td><td><span class="pending">PENDING</span></td><td>-</td>
-</tr>
-<tr>
-<td>Incarnate Word Cardinals</td><td>Northwestern St Demons</td><td><strong>Demons</strong></td><td>56.5%</td><td>-2.5</td><td>-</td><td><span class="pending">PENDING</span></td><td>-</td>
-</tr>
-<tr>
-<td>UT Rio Grande Valley Vaqueros</td><td>McNeese Cowboys</td><td><strong>Cowboys</strong></td><td>84.1%</td><td>-11.2</td><td>-</td><td><span class="pending">PENDING</span></td><td>-</td>
-</tr>
-<tr>
-<td>New Orleans Privateers</td><td>Stephen F. Austin Lumberjacks</td><td><strong>Lumberjacks</strong></td><td>87.4%</td><td>-13.0</td><td>-</td><td><span class="pending">PENDING</span></td><td>-</td>
-</tr>
-<tr>
-<td>Miss Valley St Delta Devils</td><td>Grambling St Tigers</td><td><strong>Tigers</strong></td><td>92.4%</td><td>-16.5</td><td>-</td><td><span class="pending">PENDING</span></td><td>-</td>
-</tr>
-<tr>
-<td>Houston Cougars</td><td>Kansas Jayhawks</td><td><strong>Cougars</strong></td><td>55.4%</td><td>+1.8</td><td>-</td><td><span class="pending">PENDING</span></td><td>-</td>
-</tr>
-</table>
-  <div class="verify">
-    <code>curl -s https://haserjian.github.io/march-madness-2026/attestations/2026-02-23.json | python3 -c "import base64,json,sys; att=json.load(sys.stdin); from nacl.signing import VerifyKey; VerifyKey(base64.b64decode(att['signer_pubkey'])).verify(json.dumps({k:v for k,v in att.items() if k not in ('signature','signer_pubkey','signer_pubkey_fingerprint')},sort_keys=True,separators=(',',':')).encode(),base64.b64decode(att['signature'])); print('PASS',att['date'],att['n_games'],'games')"</code>
-  </div>
-</div>
 
 <div class="method" style="margin-top: 2rem; border-color: var(--accent);">
   <strong>Verify any day's predictions yourself (requires Python):</strong>
@@ -330,7 +274,7 @@ print('PASS:', att['date'], att['n_games'], 'games')
 <div class="footer">
   <p>
     Built with <a href="https://pypi.org/project/assay-ai/">assay-ai</a> &middot;
-    Built 2026-02-23 22:15 UTC &middot;
+    Built 2026-02-23 22:44 UTC &middot;
     <a href="index.json">index.json</a> &middot;
     <a href="https://github.com/Haserjian/march-madness-2026">Source</a>
   </p>
