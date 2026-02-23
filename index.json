@@ -2,6 +2,13 @@
   "schema": "march_madness_index_v1",
   "description": "March Madness 2026 -- receipted predictions scoreboard",
   "signer_id": "march-madness-2026",
-  "days": [],
-  "updated_at": "2026-02-23 04:42 UTC"
+  "days": [
+    {
+      "date": "2026-02-24",
+      "updated_at": "2026-02-23T20:10:03.678935+00:00",
+      "predictions_pack": "packs/2026-02-24-predictions",
+      "predictions_receipt_count": 10
+    }
+  ],
+  "updated_at": "2026-02-23T20:10:03.678990+00:00"
 }

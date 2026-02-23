@@ -152,11 +152,11 @@
 
 <div class="stats">
   <div class="stat">
-    <div class="stat-value">1</div>
+    <div class="stat-value">2</div>
     <div class="stat-label">Days</div>
   </div>
   <div class="stat">
-    <div class="stat-value">9</div>
+    <div class="stat-value">18</div>
     <div class="stat-label">Predictions</div>
   </div>
   <div class="stat">
@@ -180,6 +180,62 @@
   Each daily manifest is SHA-256 hashed and Ed25519-signed before tipoff.
 </div>
 
+<div class="day-card">
+  <div class="day-header">
+    <h3>2026-02-24</h3>
+    <span class="games-count">9 games</span>
+  </div>
+  <div class="day-meta">
+    <div class="meta-row">
+      <span class="label">Hash:</span>
+      <code>sha256:29a94c55</code>
+    </div>
+    <div class="meta-row">
+      <span class="label">Locked:</span>
+      <span>2026-02-23 20:10:03Z</span>
+    </div>
+    <div class="meta-row">
+      <span class="label">Result:</span>
+      <span>awaiting results</span>
+      
+    </div>
+  </div>
+  <table class="games">
+<tr>
+<th>Away</th><th>Home</th><th>Pick</th><th>Prob</th><th>Spread</th><th>Score</th><th>Result</th><th>Brier</th>
+</tr>
+<tr>
+<td>Nicholls St Colonels</td><td>Lamar Cardinals</td><td><strong>Cardinals</strong></td><td>61.1%</td><td>-3.5</td><td>-</td><td><span class="pending">PENDING</span></td><td>-</td>
+</tr>
+<tr>
+<td>Texas A&M-CC Islanders</td><td>SE Louisiana Lions</td><td><strong>Islanders</strong></td><td>53.4%</td><td>+1.5</td><td>-</td><td><span class="pending">PENDING</span></td><td>-</td>
+</tr>
+<tr>
+<td>Louisville Cardinals</td><td>North Carolina Tar Heels</td><td><strong>Cardinals</strong></td><td>60.7%</td><td>+3.5</td><td>-</td><td><span class="pending">PENDING</span></td><td>-</td>
+</tr>
+<tr>
+<td>Houston Christian Huskies</td><td>East Texas A&M Lions</td><td><strong>Lions</strong></td><td>57.9%</td><td>-2.5</td><td>-</td><td><span class="pending">PENDING</span></td><td>-</td>
+</tr>
+<tr>
+<td>New Orleans Privateers</td><td>Stephen F. Austin Lumberjacks</td><td><strong>Lumberjacks</strong></td><td>86.3%</td><td>-11.5</td><td>-</td><td><span class="pending">PENDING</span></td><td>-</td>
+</tr>
+<tr>
+<td>Incarnate Word Cardinals</td><td>Northwestern St Demons</td><td><strong>Demons</strong></td><td>56.6%</td><td>-2.0</td><td>-</td><td><span class="pending">PENDING</span></td><td>-</td>
+</tr>
+<tr>
+<td>UT Rio Grande Valley Vaqueros</td><td>McNeese Cowboys</td><td><strong>Cowboys</strong></td><td>85.9%</td><td>-11.5</td><td>-</td><td><span class="pending">PENDING</span></td><td>-</td>
+</tr>
+<tr>
+<td>Miss Valley St Delta Devils</td><td>Grambling St Tigers</td><td><strong>Tigers</strong></td><td>91.8%</td><td>-15.5</td><td>-</td><td><span class="pending">PENDING</span></td><td>-</td>
+</tr>
+<tr>
+<td>Houston Cougars</td><td>Kansas Jayhawks</td><td><strong>Cougars</strong></td><td>55.2%</td><td>+1.8</td><td>-</td><td><span class="pending">PENDING</span></td><td>-</td>
+</tr>
+</table>
+  <div class="verify">
+    <code>pip install assay-ai && assay verify-march-day --date 2026-02-24 --public-url https://haserjian.github.io/march-madness-2026</code>
+  </div>
+</div>
 <div class="day-card">
   <div class="day-header">
     <h3>2026-02-23</h3>
@@ -233,13 +289,13 @@
 </tr>
 </table>
   <div class="verify">
-    <code># Verify attestation: curl -s https://haserjian.github.io/march-madness-2026/attestations/2026-02-23.json | python3 -m json.tool</code>
+    <code>pip install assay-ai && assay verify-march-day --date 2026-02-23 --public-url https://haserjian.github.io/march-madness-2026</code>
   </div>
 </div>
 
 <div class="footer">
   <p>
-    Built 2026-02-23 04:42 UTC &middot;
+    Built 2026-02-23 20:10 UTC &middot;
     <a href="index.json">index.json</a> &middot;
     <a href="https://github.com/Haserjian/march-madness-2026">Source</a>
   </p>
