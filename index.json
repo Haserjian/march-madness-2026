@@ -11,10 +11,12 @@
     },
     {
       "date": "2026-02-24",
-      "updated_at": "2026-02-23T20:10:03.678935+00:00",
+      "updated_at": "2026-02-24T04:00:01.597274+00:00",
       "predictions_pack": "packs/2026-02-24-predictions",
-      "predictions_receipt_count": 10
+      "predictions_receipt_count": 10,
+      "settlements_pack": "packs/2026-02-24-settlements",
+      "settlements_receipt_count": 8
     }
   ],
-  "updated_at": "2026-02-23T22:44:45.974466+00:00"
+  "updated_at": "2026-02-24T04:00:01.597744+00:00"
 }

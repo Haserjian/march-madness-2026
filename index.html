@@ -159,16 +159,16 @@
     <div class="stat-label">Predictions</div>
   </div>
   <div class="stat">
-    <div class="stat-value">0</div>
+    <div class="stat-value">7</div>
     <div class="stat-label">Settled</div>
   </div>
   <div class="stat">
-    <div class="stat-value">-</div>
-    <div class="stat-label">Accuracy</div>
+    <div class="stat-value">42.9%</div>
+    <div class="stat-label">Accuracy (7)</div>
   </div>
   <div class="stat">
-    <div class="stat-value">-</div>
-    <div class="stat-label" title="Brier score measures prediction accuracy: 0.0 = perfect, ~0.25 is coin-flip territory. Lower is better.">Avg Brier &#9432;</div>
+    <div class="stat-value">0.3208</div>
+    <div class="stat-label" title="Brier score measures prediction accuracy: 0.0 = perfect, ~0.25 is coin-flip territory. Lower is better.">Avg Brier (7) &#9432;</div>
   </div>
 </div>
 
@@ -203,8 +203,8 @@
     </div>
     <div class="meta-row">
       <span class="label">Result:</span>
-      <span>awaiting results</span>
-      
+      <span>42.9% (3/7) &middot; 2 pending</span>
+      <span class="brier">Brier: 0.3208</span>
     </div>
   </div>
   <table class="games">
@@ -212,25 +212,25 @@
 <th>Away</th><th>Home</th><th>Pick</th><th>Prob</th><th>Spread</th><th>Score</th><th>Result</th><th>Brier</th>
 </tr>
 <tr>
-<td>Nicholls St Colonels</td><td>Lamar Cardinals</td><td><strong>Cardinals</strong></td><td>61.1%</td><td>-3.5</td><td>-</td><td><span class="pending">PENDING</span></td><td>-</td>
+<td>Nicholls St Colonels</td><td>Lamar Cardinals</td><td><strong>Cardinals</strong></td><td>61.1%</td><td>-3.5</td><td>53-52</td><td><span class="miss">MISS</span></td><td>0.3728</td>
 </tr>
 <tr>
-<td>Texas A&M-CC Islanders</td><td>SE Louisiana Lions</td><td><strong>Islanders</strong></td><td>53.4%</td><td>+1.5</td><td>-</td><td><span class="pending">PENDING</span></td><td>-</td>
+<td>Texas A&M-CC Islanders</td><td>SE Louisiana Lions</td><td><strong>Islanders</strong></td><td>53.4%</td><td>+1.5</td><td>73-68</td><td><span class="correct">OK</span></td><td>0.2168</td>
 </tr>
 <tr>
-<td>Louisville Cardinals</td><td>North Carolina Tar Heels</td><td><strong>Cardinals</strong></td><td>60.7%</td><td>+3.5</td><td>-</td><td><span class="pending">PENDING</span></td><td>-</td>
+<td>Louisville Cardinals</td><td>North Carolina Tar Heels</td><td><strong>Cardinals</strong></td><td>60.7%</td><td>+3.5</td><td>74-77</td><td><span class="miss">MISS</span></td><td>0.3683</td>
 </tr>
 <tr>
-<td>Houston Christian Huskies</td><td>East Texas A&M Lions</td><td><strong>Lions</strong></td><td>57.9%</td><td>-2.5</td><td>-</td><td><span class="pending">PENDING</span></td><td>-</td>
+<td>Houston Christian Huskies</td><td>East Texas A&M Lions</td><td><strong>Lions</strong></td><td>57.9%</td><td>-2.5</td><td>69-68</td><td><span class="miss">MISS</span></td><td>0.3347</td>
 </tr>
 <tr>
-<td>New Orleans Privateers</td><td>Stephen F. Austin Lumberjacks</td><td><strong>Lumberjacks</strong></td><td>86.3%</td><td>-11.5</td><td>-</td><td><span class="pending">PENDING</span></td><td>-</td>
+<td>New Orleans Privateers</td><td>Stephen F. Austin Lumberjacks</td><td><strong>Lumberjacks</strong></td><td>86.3%</td><td>-11.5</td><td>77-73</td><td><span class="miss">MISS</span></td><td>0.7448</td>
 </tr>
 <tr>
-<td>Incarnate Word Cardinals</td><td>Northwestern St Demons</td><td><strong>Demons</strong></td><td>56.6%</td><td>-2.0</td><td>-</td><td><span class="pending">PENDING</span></td><td>-</td>
+<td>Incarnate Word Cardinals</td><td>Northwestern St Demons</td><td><strong>Demons</strong></td><td>56.6%</td><td>-2.0</td><td>49-54</td><td><span class="correct">OK</span></td><td>0.1884</td>
 </tr>
 <tr>
-<td>UT Rio Grande Valley Vaqueros</td><td>McNeese Cowboys</td><td><strong>Cowboys</strong></td><td>85.9%</td><td>-11.5</td><td>-</td><td><span class="pending">PENDING</span></td><td>-</td>
+<td>UT Rio Grande Valley Vaqueros</td><td>McNeese Cowboys</td><td><strong>Cowboys</strong></td><td>85.9%</td><td>-11.5</td><td>68-75</td><td><span class="correct">OK</span></td><td>0.0200</td>
 </tr>
 <tr>
 <td>Miss Valley St Delta Devils</td><td>Grambling St Tigers</td><td><strong>Tigers</strong></td><td>91.8%</td><td>-15.5</td><td>-</td><td><span class="pending">PENDING</span></td><td>-</td>
@@ -274,7 +274,7 @@ print('PASS:', att['date'], att['n_games'], 'games')
 <div class="footer">
   <p>
     Built with <a href="https://pypi.org/project/assay-ai/">assay-ai</a> &middot;
-    Built 2026-02-23 22:44 UTC &middot;
+    Built 2026-02-24 04:00 UTC &middot;
     <a href="index.json">index.json</a> &middot;
     <a href="https://github.com/Haserjian/march-madness-2026">Source</a>
   </p>
