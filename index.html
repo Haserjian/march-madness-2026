@@ -159,16 +159,16 @@
     <div class="stat-label">Predictions</div>
   </div>
   <div class="stat">
-    <div class="stat-value">9</div>
+    <div class="stat-value">12</div>
     <div class="stat-label">Settled</div>
   </div>
   <div class="stat">
-    <div class="stat-value">44.4%</div>
-    <div class="stat-label">Accuracy (9)</div>
+    <div class="stat-value">50.0%</div>
+    <div class="stat-label">Accuracy (12)</div>
   </div>
   <div class="stat">
-    <div class="stat-value">0.2842</div>
-    <div class="stat-label" title="Brier score measures prediction accuracy: 0.0 = perfect, ~0.25 is coin-flip territory. Lower is better.">Avg Brier (9) &#9432;</div>
+    <div class="stat-value">0.3046</div>
+    <div class="stat-label" title="Brier score measures prediction accuracy: 0.0 = perfect, ~0.25 is coin-flip territory. Lower is better.">Avg Brier (12) &#9432;</div>
   </div>
 </div>
 
@@ -203,8 +203,8 @@
     </div>
     <div class="meta-row">
       <span class="label">Result:</span>
-      <span>awaiting results</span>
-      
+      <span>66.7% (2/3) &middot; 5 pending</span>
+      <span class="brier">Brier: 0.3658</span>
     </div>
   </div>
   <table class="games">
@@ -212,13 +212,13 @@
 <th>Away</th><th>Home</th><th>Pick</th><th>Prob</th><th>Spread</th><th>Score</th><th>Result</th><th>Brier</th>
 </tr>
 <tr>
-<td>USC Trojans</td><td>UCLA Bruins</td><td><strong>Bruins</strong></td><td>72.7%</td><td>-6.8</td><td>-</td><td><span class="pending">PENDING</span></td><td>-</td>
+<td>USC Trojans</td><td>UCLA Bruins</td><td><strong>Bruins</strong></td><td>72.7%</td><td>-6.8</td><td>62-81</td><td><span class="correct">OK</span></td><td>0.0746</td>
 </tr>
 <tr>
-<td>UCF Knights</td><td>BYU Cougars</td><td><strong>Cougars</strong></td><td>88.2%</td><td>-14.0</td><td>-</td><td><span class="pending">PENDING</span></td><td>-</td>
+<td>UCF Knights</td><td>BYU Cougars</td><td><strong>Cougars</strong></td><td>88.2%</td><td>-14.0</td><td>97-84</td><td><span class="miss">MISS</span></td><td>0.7779</td>
 </tr>
 <tr>
-<td>New Mexico Lobos</td><td>Nevada Wolf Pack</td><td><strong>Pack</strong></td><td>50.5%</td><td>-1.0</td><td>-</td><td><span class="pending">PENDING</span></td><td>-</td>
+<td>New Mexico Lobos</td><td>Nevada Wolf Pack</td><td><strong>Pack</strong></td><td>50.5%</td><td>-1.0</td><td>60-67</td><td><span class="correct">OK</span></td><td>0.2449</td>
 </tr>
 <tr>
 <td>Bucknell Bison</td><td>Army Knights</td><td><strong>Knights</strong></td><td>58.9%</td><td>-2.5</td><td>-</td><td><span class="pending">PENDING</span></td><td>-</td>
@@ -327,7 +327,7 @@ print('PASS:', att['date'], att['n_games'], 'games')
 <div class="footer">
   <p>
     Built with <a href="https://pypi.org/project/assay-ai/">assay-ai</a> &middot;
-    Built 2026-02-25 04:00 UTC &middot;
+    Built 2026-02-25 18:00 UTC &middot;
     <a href="index.json">index.json</a> &middot;
     <a href="https://github.com/Haserjian/march-madness-2026">Source</a>
   </p>
