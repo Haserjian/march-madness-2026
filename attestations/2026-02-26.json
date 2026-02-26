@@ -1,0 +1,15 @@
+{
+  "schema": "march_madness_attestation_v1",
+  "date": "2026-02-26",
+  "attested_at": "2026-02-26T04:00:03.690682+00:00",
+  "n_games": 6,
+  "predictions_hash": "sha256:0002dced3f107a75f4baecc02fd1368a0a79a99d7900551117bb341bde9c94b6",
+  "locked_at": "2026-02-26T04:00:02.249143+00:00",
+  "site_html_hash": "sha256:2de3a995e68c0fb50b6f09dbc7d585c62806fe913eacba7964cffa24dc5052ec",
+  "site_json_hash": "sha256:d02c3e60b6694b258caef436ca2f33a851b881c520acac7351420c8d459ef266",
+  "source_commit": "89f59a1eccdc209ea93f1c47ce122376c79c89a1",
+  "signer_id": "march-madness-2026",
+  "signature": "24ocE5iAcz/bZI2a9vCv4SQNbBYS5jjKa7d2QAxycF6v8unMJZxeCFnlWXXBmu6Wleh6PHBST+GxxJTZRPwBDQ==",
+  "signer_pubkey": "uh17vJodTtE+xO2JE2wKB7STy1T11pT06Z155Lyc+MU=",
+  "signer_pubkey_fingerprint": "sha256:81f878680fdfbc8986c66ca8df84519b7d26e368e72ec5db2480160278d5e0d3"
+}

@@ -151,11 +151,11 @@
 
 <div class="stats">
   <div class="stat">
-    <div class="stat-value">2</div>
+    <div class="stat-value">3</div>
     <div class="stat-label">Days</div>
   </div>
   <div class="stat">
-    <div class="stat-value">17</div>
+    <div class="stat-value">23</div>
     <div class="stat-label">Predictions</div>
   </div>
   <div class="stat">
@@ -187,6 +187,53 @@
   <br><em style="font-size: 0.8rem;">Digital signatures (Ed25519) &mdash; the same technology behind SSH and software updates. This is not betting advice.</em>
 </div>
 
+<div class="day-card">
+  <div class="day-header">
+    <h3>2026-02-26</h3>
+    <span class="games-count">6 games</span>
+  </div>
+  <div class="day-meta">
+    <div class="meta-row">
+      <span class="label">Hash:</span>
+      <code>sha256:0002dced</code>
+    </div>
+    <div class="meta-row">
+      <span class="label">Locked:</span>
+      <span>2026-02-26 04:00:02 UTC</span>
+    </div>
+    <div class="meta-row">
+      <span class="label">Result:</span>
+      <span>awaiting results</span>
+      
+    </div>
+  </div>
+  <table class="games">
+<tr>
+<th>Away</th><th>Home</th><th>Pick</th><th>Prob</th><th>Spread</th><th>Score</th><th>Result</th><th>Brier</th>
+</tr>
+<tr>
+<td>Charleston Cougars</td><td>Hampton Pirates</td><td><strong>Cougars</strong></td><td>65.2%</td><td>+4.5</td><td>-</td><td><span class="pending">PENDING</span></td><td>-</td>
+</tr>
+<tr>
+<td>Rhode Island Rams</td><td>St. Bonaventure Bonnies</td><td><strong>Bonnies</strong></td><td>57.4%</td><td>-2.5</td><td>-</td><td><span class="pending">PENDING</span></td><td>-</td>
+</tr>
+<tr>
+<td>Bethune-Cookman Wildcats</td><td>Grambling St Tigers</td><td><strong>Wildcats</strong></td><td>52.5%</td><td>+1.5</td><td>-</td><td><span class="pending">PENDING</span></td><td>-</td>
+</tr>
+<tr>
+<td>New Hampshire Wildcats</td><td>Binghamton Bearcats</td><td><strong>Wildcats</strong></td><td>53.9%</td><td>+1.5</td><td>-</td><td><span class="pending">PENDING</span></td><td>-</td>
+</tr>
+<tr>
+<td>Bryant Bulldogs</td><td>UMBC Retrievers</td><td><strong>Retrievers</strong></td><td>82.9%</td><td>-11.0</td><td>-</td><td><span class="pending">PENDING</span></td><td>-</td>
+</tr>
+<tr>
+<td>Maine Black Bears</td><td>Albany Great Danes</td><td><strong>Danes</strong></td><td>71.0%</td><td>-6.5</td><td>-</td><td><span class="pending">PENDING</span></td><td>-</td>
+</tr>
+</table>
+  <div class="verify">
+    <code>curl -s https://haserjian.github.io/march-madness-2026/attestations/2026-02-26.json | python3 -c "import base64,json,sys; att=json.load(sys.stdin); from nacl.signing import VerifyKey; VerifyKey(base64.b64decode(att['signer_pubkey'])).verify(json.dumps({k:v for k,v in att.items() if k not in ('signature','signer_pubkey','signer_pubkey_fingerprint')},sort_keys=True,separators=(',',':')).encode(),base64.b64decode(att['signature'])); print('PASS',att['date'],att['n_games'],'games')"</code>
+  </div>
+</div>
 <div class="day-card">
   <div class="day-header">
     <h3>2026-02-25</h3>
@@ -301,7 +348,7 @@
   <strong>Verify any day's predictions yourself (requires Python):</strong>
   <p style="margin-top: 0.25rem; margin-bottom: 0.5rem; font-size: 0.82rem;">Checks that the digital signature is valid &mdash; proving the predictions existed before tipoff and haven&rsquo;t been changed.</p>
   <pre style="margin-top: 0.5rem; overflow-x: auto; color: var(--text); font-size: 0.82rem;">pip install pynacl
-curl -s https://haserjian.github.io/march-madness-2026/attestations/2026-02-25.json | python3 -c "
+curl -s https://haserjian.github.io/march-madness-2026/attestations/2026-02-26.json | python3 -c "
 import base64, json, sys
 att = json.load(sys.stdin)
 from nacl.signing import VerifyKey
@@ -327,7 +374,7 @@ print('PASS:', att['date'], att['n_games'], 'games')
 <div class="footer">
   <p>
     Built with <a href="https://pypi.org/project/assay-ai/">assay-ai</a> &middot;
-    Built 2026-02-25 18:00 UTC &middot;
+    Built 2026-02-26 04:00 UTC &middot;
     <a href="index.json">index.json</a> &middot;
     <a href="https://github.com/Haserjian/march-madness-2026">Source</a>
   </p>

@@ -24,7 +24,13 @@
       "predictions_receipt_count": 9,
       "settlements_pack": "packs/2026-02-25-settlements",
       "settlements_receipt_count": 4
+    },
+    {
+      "date": "2026-02-26",
+      "updated_at": "2026-02-26T04:00:03.345957+00:00",
+      "predictions_pack": "packs/2026-02-26-predictions",
+      "predictions_receipt_count": 7
     }
   ],
-  "updated_at": "2026-02-25T18:00:02.960406+00:00"
+  "updated_at": "2026-02-26T04:00:03.346056+00:00"
 }
