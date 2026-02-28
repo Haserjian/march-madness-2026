@@ -30,7 +30,13 @@
       "updated_at": "2026-02-26T04:00:03.345957+00:00",
       "predictions_pack": "packs/2026-02-26-predictions",
       "predictions_receipt_count": 7
+    },
+    {
+      "date": "2026-02-28",
+      "updated_at": "2026-02-28T04:00:04.876785+00:00",
+      "predictions_pack": "packs/2026-02-28-predictions",
+      "predictions_receipt_count": 114
     }
   ],
-  "updated_at": "2026-02-26T04:00:03.346056+00:00"
+  "updated_at": "2026-02-28T04:00:04.876876+00:00"
 }
